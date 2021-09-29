@@ -17,6 +17,7 @@ const MyDictionary = (props) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.addSentence.list);
 
+  // 스크롤 이동 함수를 이용한다.
   const scroll_ref = React.useRef();
   const executeScroll = () => {
     scroll_ref.current.scrollIntoView({
@@ -24,7 +25,7 @@ const MyDictionary = (props) => {
       block: "start",
     });
   };
-
+  // loadWordFB 를 통해 firebase에 있는 데이터를 가져온다.
   React.useEffect(() => {
     dispatch(loadWordFB());
   }, []);
@@ -57,6 +58,7 @@ const MyDictionary = (props) => {
           );
         })}
       </Body>
+      {/* React Icon을 이용하였다. */}
       <CgArrowDownR
         onClick={executeScroll}
         style={{

@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { db } from "./firebase";
 import { collection, getDoc, getDocs, addDoc } from "firebase/firestore";
 
+//함수형 Component 사용
 const Add = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,10 +18,12 @@ const Add = (props) => {
   const my_explain = React.useRef(null);
   const my_example = React.useRef(null);
 
+  //useEffect를 이용하여 미들웨어에 디스패치 한다.
   React.useEffect(() => {
     dispatch(loadWordFB());
   });
 
+  //Ref를 통해 3개의 input값을 가져와 미들웨어에 디스패치 한다.
   const addCard = () => {
     dispatch(
       addWordFB({
@@ -50,7 +53,9 @@ const Add = (props) => {
       </Card>
       <Button
         onClick={() => {
+          // 버튼 클릭시 input 값이 미들웨어로 디스패치 된다.
           addCard();
+          // 디스패치 후 / 주소로 이동한다. (goback를 이용할 수 있다.)
           history.push("/");
           alert("저장 완료~!!");
         }}
